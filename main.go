@@ -11,12 +11,8 @@ import (
 // Environment variables
 // TODO: replace with ENV variables
 var testnet = "testnet-dex.binance.org"
-var mainnet = "dex.binance.org"
 
-// var privateKeyProd = "b374c9fd24433075c1883eb66ba8c5f406ebe40e9227c4ff6490dc5fa486ea61"
-
-// Variable to hold the current block height
-var currentBlockHeight int64
+// var mainnet = "dex.binance.org"
 
 func init() {
 	// Load environment variables from .ENV file
@@ -51,7 +47,6 @@ func main() {
 	go binance.GetNewBlockHeight(client, quit, chanNewBlock)
 
 	for item := range chanNewBlock {
-		currentBlockHeight = item
 		log.Printf("New block - #%v", item)
 	}
 
